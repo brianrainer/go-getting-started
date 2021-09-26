@@ -1,0 +1,14 @@
+name: Deploy to Heroku
+on:
+  push:
+    branches: [master]
+jobs:
+  deploy-to-heroku:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_APIKEY }}
+        heroku_app_name: "damp-scrubland-16344"
+        heroku_email: "brianrainer5497@gmail.com"
