@@ -11,3 +11,11 @@ clean:
 
 heroku: $(DOCKER_CMD)
 	heroku container:push web
+
+
+build:
+	go build -v .
+
+
+run:
+	go run main.go
