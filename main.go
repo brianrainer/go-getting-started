@@ -65,5 +65,21 @@ func main() {
 		c.JSON(http.StatusOK, user[keyword])
 	})
 
+	router.GET("/followers/:username", func(c *gin.Context){
+		keyword := c.Param("username")
+
+		user := map[string]User{}
+		json.Unmarshal(getJson(), &user)
+
+		result := 0
+		for _, val := range user {
+			if val.Username == keyword {
+				result = val.Follower
+			}
+		}
+
+		c.JSON(http.StatusOK, result)
+	})
+
 	router.Run(":" + port)
 }
