@@ -1,12 +1,12 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
-	"fmt"
-	"io/ioutil"
-	"encoding/json"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/heroku/x/hmetrics/onload"
@@ -58,14 +58,14 @@ func main() {
 
 	router.GET("/username/:userid", func(c *gin.Context) {
 		keyword := c.Param("userid")
-		
+
 		user := map[string]User{}
 		json.Unmarshal(getJson(), &user)
 
 		c.JSON(http.StatusOK, user[keyword])
 	})
 
-	router.GET("/followers/:username", func(c *gin.Context){
+	router.GET("/followers/:username", func(c *gin.Context) {
 		keyword := c.Param("username")
 
 		user := map[string]User{}

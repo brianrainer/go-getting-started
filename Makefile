@@ -13,8 +13,16 @@ heroku: $(DOCKER_CMD)
 	heroku container:push web
 
 
+lint:
+	go fmt ./...
+
+
 build:
 	go build -v .
+
+
+test:
+	go test -v ./...
 
 
 run:
